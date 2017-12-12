@@ -14,8 +14,8 @@ FTP_CONFIGURATION_KEY = os.getenv('FTP_CONFIGURATION_KEY', "local")
 COMMAND = "java"
 ARGS    = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + DEBUG_PORT,
            "-jar",
-           "nihms-cli-1.0.0-SNAPSHOT-shaded.jar",
-           "/usr/local/src/huims-submission/nihms-cli/src/main/resources/FilesystemModelBuilderTest.properties",
+           "/usr/local/src/nihms-submission/nihms-cli/target/nihms-cli-1.0.0-SNAPSHOT-shaded.jar",
+           "/usr/local/src/nihms-submission/nihms-cli/src/main/resources/FilesystemModelBuilderTest.properties",
            FTP_CONFIGURATION_KEY
           ]
 
