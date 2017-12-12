@@ -3,16 +3,20 @@
 # A simple HTTP server that responds to POSTs by running a shell command
 # Usage: python cgi_server.py &
 
+import os
 import BaseHTTPServer
 from subprocess import call
 
 # Edit these values to control the server behavior
-PORT    = 7000
+PORT = int(os.getenv('PY_CGI_PORT', "8080"))
+DEBUG_PORT = os.getenv('FTP_SUBMISSION_DEBUG_PORT', "5005")
+FTP_CONFIGURATION_KEY = os.getenv('FTP_CONFIGURATION_KEY', "local")
 COMMAND = "java"
-ARGS    = ["-jar",
+ARGS    = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + DEBUG_PORT,
+           "-jar",
            "nihms-cli-1.0.0-SNAPSHOT-shaded.jar",
            "/usr/local/src/huims-submission/nihms-cli/src/main/resources/FilesystemModelBuilderTest.properties",
-           "local"
+           FTP_CONFIGURATION_KEY
           ]
 
 
